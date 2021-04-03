@@ -135,6 +135,11 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3048971945089673369, guid: 25533b0d6641de546a58fd3c7edd177c,
+        type: 3}
+      propertyPath: speedX
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 3048971945089673371, guid: 25533b0d6641de546a58fd3c7edd177c,
         type: 3}
       propertyPath: m_Name
