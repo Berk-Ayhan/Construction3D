@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2956154636448680846}
   - component: {fileID: 6341457510143518451}
-  - component: {fileID: 7276963286794443300}
+  - component: {fileID: 4675053616389124730}
   m_Layer: 0
-  m_Name: SandBase
+  m_Name: GroundBase
   m_TagString: Sand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08ab590f993f37048942646d9de26be2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!65 &7276963286794443300
+--- !u!65 &4675053616389124730
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -55,5 +55,5 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.03, y: 0.04, z: 0.9}
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}

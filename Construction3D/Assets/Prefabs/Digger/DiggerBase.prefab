@@ -89,7 +89,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedX: 150
-  speedY: 4
+  speedY: 5
 --- !u!114 &5031722603068433427
 MonoBehaviour:
   m_ObjectHideFlags: 0

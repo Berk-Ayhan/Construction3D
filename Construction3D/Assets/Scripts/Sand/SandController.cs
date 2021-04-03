@@ -8,7 +8,7 @@ public class SandController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Digger"))
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }

@@ -4,7 +4,7 @@ public class DiggerController : MonoBehaviour
 {
     private Rigidbody _rb;
     private Mover _mover;
-    private Vector3 _directionX, _directionY;
+    private Vector3 _directionX;
     private float _mouseXPos;
     private bool _isClicked, _isDigging;
     void Awake()
@@ -16,14 +16,13 @@ public class DiggerController : MonoBehaviour
     {
         _mouseXPos = Input.GetAxis("Mouse X");
         _directionX = new Vector3(_mouseXPos, 0, 0);
-        _directionY = Vector3.down;
         CheckMouseClick();
     }
     void FixedUpdate()//Movement control
     {
-        if (!_isDigging) 
+        if (_isDigging) 
         {
-            _mover.MoveVertical(_rb, _directionY);
+            _mover.MoveDown();
         }
         else
         {
@@ -49,14 +48,12 @@ public class DiggerController : MonoBehaviour
         if (Input.GetMouseButton(0))
             _isClicked = true;
         else
+        {
             _isClicked = false;
+            if (Input.GetMouseButtonUp(0))
+            {
+                _isDigging = true;
+            }
+        }
     }
-    //void OnGUI()
-    //{
-    //    Event e = Event.current;
-    //    if (e.isMouse)
-    //    {
-    //        Debug.Log("Mouse clicks: " + e.clickCount);
-    //    }
-    //}
 }

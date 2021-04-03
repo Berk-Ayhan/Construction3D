@@ -5,9 +5,15 @@ public class Mover : MonoBehaviour
 {
     [SerializeField] private float speedX = 150f;
     [SerializeField] private float speedY = 6f;
-    public void MoveVertical(Rigidbody rb, Vector3 directionY)
+    public void MoveDown()
     {
-        rb.velocity += directionY * speedY * Time.fixedDeltaTime;
+        transform.Translate(Vector3.down * Time.fixedDeltaTime
+            * speedY);
+    }
+    public void MoveUp()
+    {
+        transform.Translate(Vector3.up * Time.fixedDeltaTime
+            * speedY);
     }
     public void MoveHorizontal(Rigidbody rb, Vector3 directionX)
     {
