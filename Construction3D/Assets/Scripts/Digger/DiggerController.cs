@@ -17,16 +17,17 @@ public class DiggerController : MonoBehaviour
         _mouseXPos = Input.GetAxis("Mouse X");
         _directionX = new Vector3(_mouseXPos, 0, 0);
         CheckMouseClick();
+        CheckDiggerYPosition();
     }
     void FixedUpdate()//Movement control
     {
         if (_isDigging) 
         {
-            _mover.MoveDown();
+            _mover.MoveDown(_rb);
         }
         else if (_isCanceled)
         {
-            _mover.MoveUp();
+            _mover.MoveUp(_rb);
         }
         else
         {
@@ -45,21 +46,34 @@ public class DiggerController : MonoBehaviour
             {
                 _mover.StopHorizontal(_rb);
             }
-        }
+        } // Horizontal position setter
     }
     private void CheckMouseClick()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButtonDown(0) && _isDigging)
+        {
+            _isDigging = false;
+            _isCanceled = true;
+        } //Digging canceler 
+        else if (Input.GetMouseButton(0))
         {
             _isClicked = true;
         }
         else
         {
             _isClicked = false;
-            if (Input.GetMouseButtonUp(0))
+            if (Input.GetMouseButtonUp(0) && !_isCanceled)
             {
+                print("Digging Started");
                 _isDigging = true;
-            }
+            }// Digging starter
+        }
+    }
+    private void CheckDiggerYPosition()
+    {
+        if (_rb.position.y >= 4)
+        {
+            _isCanceled = false;
         }
     }
 }

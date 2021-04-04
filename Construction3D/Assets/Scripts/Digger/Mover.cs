@@ -3,17 +3,19 @@ using UnityEngine;
 
 public class Mover : MonoBehaviour
 {
-    [SerializeField] private float speedX = 150f;
-    [SerializeField] private float speedY = 6f;
-    public void MoveDown()
+    [SerializeField] private float speedX = 100f;
+    [SerializeField] private float speedY = 5f;
+    public void MoveDown(Rigidbody _rb)
     {
         transform.Translate(Vector3.down * Time.fixedDeltaTime
             * speedY);
+        StopHorizontal(_rb);
     }
-    public void MoveUp()
+    public void MoveUp(Rigidbody _rb)
     {
         transform.Translate(Vector3.up * Time.fixedDeltaTime
             * speedY);
+        StopHorizontal(_rb);
     }
     public void MoveHorizontal(Rigidbody rb, Vector3 directionX)
     {
