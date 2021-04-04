@@ -1,78 +1,82 @@
 using UnityEngine;
 
-public class DiggerController : MonoBehaviour
+namespace Construction3D.Digger
 {
-    private Rigidbody _rb;
-    private Mover _mover;
-    private Vector3 _directionX;
-    private float _mouseXPos;
-    private bool _isClicked, _isDigging, _isCanceled;
-    void Awake()
+    public class DiggerController : MonoBehaviour
     {
-        _rb = GetComponent<Rigidbody>();
-        _mover = GetComponent<Mover>();
-    }
-    void Update()
-    {
-        _mouseXPos = Input.GetAxis("Mouse X");
-        _directionX = new Vector3(_mouseXPos, 0, 0);
-        CheckMouseClick();
-        CheckDiggerYPosition();
-    }
-    void FixedUpdate()//Movement control
-    {
-        if (_isDigging) 
+        private Rigidbody _rb;
+        private Mover _mover;
+        private Vector3 _directionX;
+        private float _mouseXPos;
+        private bool _isClicked, _isDigging, _isCanceled;
+        void Awake()
         {
-            _mover.MoveDown(_rb);
+            _rb = GetComponent<Rigidbody>();
+            _mover = GetComponent<Mover>();
         }
-        else if (_isCanceled)
+        void Update()
         {
-            _mover.MoveUp(_rb);
+            _mouseXPos = Input.GetAxis("Mouse X");
+            _directionX = new Vector3(_mouseXPos, 0, 0);
+            CheckMouseClick();
+            CheckDiggerYPosition();
         }
-        else
+        void FixedUpdate()//Movement control
         {
-            if (_isClicked)
+            if (_isDigging)
             {
-                if (_mouseXPos != 0)
+                _mover.MoveDown(_rb);
+            }
+            else if (_isCanceled)
+            {
+                _mover.MoveUp(_rb);
+            }
+            else
+            {
+                if (_isClicked)
                 {
-                    _mover.MoveHorizontal(_rb, _directionX);
+                    if (_mouseXPos != 0)
+                    {
+                        _mover.MoveHorizontal(_rb, _directionX);
+                    }
+                    else
+                    {
+                        _mover.StopHorizontal(_rb);
+                    }
                 }
                 else
                 {
                     _mover.StopHorizontal(_rb);
                 }
+            } // Horizontal position setter
+        }
+        private void CheckMouseClick()
+        {
+            if (Input.GetMouseButtonDown(0) && _isDigging)
+            {
+                _isDigging = false;
+                _isCanceled = true;
+            } //Digging canceler 
+            else if (Input.GetMouseButton(0))
+            {
+                _isClicked = true;
             }
             else
             {
-                _mover.StopHorizontal(_rb);
+                _isClicked = false;
+                if (Input.GetMouseButtonUp(0) && !_isCanceled)
+                {
+                    _isDigging = true;
+                }// Digging starter
             }
-        } // Horizontal position setter
-    }
-    private void CheckMouseClick()
-    {
-        if (Input.GetMouseButtonDown(0) && _isDigging)
-        {
-            _isDigging = false;
-            _isCanceled = true;
-        } //Digging canceler 
-        else if (Input.GetMouseButton(0))
-        {
-            _isClicked = true;
         }
-        else
+        private void CheckDiggerYPosition()
         {
-            _isClicked = false;
-            if (Input.GetMouseButtonUp(0) && !_isCanceled)
+            if (_rb.position.y >= 4)
             {
-                _isDigging = true;
-            }// Digging starter
-        }
-    }
-    private void CheckDiggerYPosition()
-    {
-        if (_rb.position.y >= 4)
-        {
-            _isCanceled = false;
+                _isCanceled = false;
+            }
         }
     }
 }
+

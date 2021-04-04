@@ -1,12 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class DiggerClamper : MonoBehaviour
+namespace Construction3D.Digger
 {
-    //Limits the digger's movement area
-    void Update()
+    public class DiggerClamper : MonoBehaviour
     {
-        transform.position = new Vector3(Mathf.Clamp(transform.position.x, -1.5f, 1.5f), Mathf.Clamp(transform.position.y, -1f, 4f), transform.position.z);
+        //Limits the digger's movement area
+        void Update()
+        {
+            transform.position = new Vector3(Mathf.Clamp(transform.position.x, -1.5f, 1.5f), Mathf.Clamp(transform.position.y, -0.7f, 4f), transform.position.z);
+        }
     }
 }
