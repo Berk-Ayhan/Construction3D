@@ -64,7 +64,6 @@ public class DiggerController : MonoBehaviour
             _isClicked = false;
             if (Input.GetMouseButtonUp(0) && !_isCanceled)
             {
-                print("Digging Started");
                 _isDigging = true;
             }// Digging starter
         }

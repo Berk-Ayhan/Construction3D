@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class Mover : MonoBehaviour
 {
-    [SerializeField] private float speedX = 100f;
-    [SerializeField] private float speedY = 5f;
+    [SerializeField] private float speedX = 30f;
+    [SerializeField] private float speedY = 2f;
     public void MoveDown(Rigidbody _rb)
     {
         transform.Translate(Vector3.down * Time.fixedDeltaTime
@@ -19,7 +19,7 @@ public class Mover : MonoBehaviour
     }
     public void MoveHorizontal(Rigidbody rb, Vector3 directionX)
     {
-        rb.velocity += directionX * speedX * Time.fixedDeltaTime;
+        rb.velocity = directionX * speedX * Time.fixedDeltaTime;
     }
     public void StopHorizontal(Rigidbody rb)
     {
