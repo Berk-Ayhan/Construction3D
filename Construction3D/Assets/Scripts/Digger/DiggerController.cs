@@ -6,7 +6,7 @@ public class DiggerController : MonoBehaviour
     private Mover _mover;
     private Vector3 _directionX;
     private float _mouseXPos;
-    private bool _isClicked, _isDigging;
+    private bool _isClicked, _isDigging, _isCanceled;
     void Awake()
     {
         _rb = GetComponent<Rigidbody>();
@@ -23,6 +23,10 @@ public class DiggerController : MonoBehaviour
         if (_isDigging) 
         {
             _mover.MoveDown();
+        }
+        else if (_isCanceled)
+        {
+            _mover.MoveUp();
         }
         else
         {
@@ -46,7 +50,9 @@ public class DiggerController : MonoBehaviour
     private void CheckMouseClick()
     {
         if (Input.GetMouseButton(0))
+        {
             _isClicked = true;
+        }
         else
         {
             _isClicked = false;
