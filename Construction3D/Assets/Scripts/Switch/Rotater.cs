@@ -5,34 +5,34 @@ namespace Construction3D.Switch
     public class Rotater : MonoBehaviour
     {
         public Transform pivotPoint;
-        //public void RotateLeft()
-        //{
-        //   
-        //}
-        //public void RotateRight()
-        //{
-        //    
-        //}
+        public void RotateLeft()
+        {
+            if (transform.eulerAngles.z < 30 || transform.eulerAngles.z > 328)
+            {
+                transform.RotateAround(pivotPoint.position, Vector3.forward, 40 * Time.fixedDeltaTime);
+            }
+        }
+        public void RotateRight()
+        {
+            if (transform.eulerAngles.z > 330 || transform.eulerAngles.z > 360 || transform.eulerAngles.z < 32)
+            {
+                transform.RotateAround(pivotPoint.position, Vector3.back, 40 * Time.fixedDeltaTime);
+            }
+        }
         void FixedUpdate()
         {
             if ((Input.GetKey(KeyCode.A)))
             {
-                if (transform.eulerAngles.z < 31 || transform.eulerAngles.z > 331)
-                {
-                    transform.RotateAround(pivotPoint.position, Vector3.forward, 40 * Time.fixedDeltaTime);
-                }
+                RotateLeft();
             }
             else if ((Input.GetKey(KeyCode.D)))
             {
-                if (transform.eulerAngles.z > 330 || transform.eulerAngles.z < 360)
-                {
-                    transform.RotateAround(pivotPoint.position, Vector3.back, 40 * Time.fixedDeltaTime);
-                }
+                RotateRight();
             }
-            //else
-            //{
-            //    GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
-            //}
+            else
+            {
+
+            }
         }
     }
 }

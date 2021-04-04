@@ -6,7 +6,7 @@ namespace Construction3D.Switch
 {
     public class SwitchController : MonoBehaviour
     {
-        // Start is called before the first frame update
+
         void Start()
         {
 
