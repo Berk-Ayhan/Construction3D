@@ -4,11 +4,13 @@ namespace Construction3D.Sand
 {
     public class SandController : MonoBehaviour
     {
+        public event System.Action<Vector3> onSandDestroy;
         private bool allowDecreaseCounter;
         private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.CompareTag("Digger"))
             {
+                onSandDestroy?.Invoke(transform.position);
                 Destroy(gameObject);
             }
         }

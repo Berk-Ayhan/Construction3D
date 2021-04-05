@@ -12,7 +12,7 @@ namespace Construction3D.Switch
             animator = GetComponent<Animator>();
             diggerController = FindObjectOfType<DiggerController>();
         }
-        private void Start()
+        private void OnEnable()
         {
             diggerController.onDiggerMove += HandleOnDiggerMove;
         }
