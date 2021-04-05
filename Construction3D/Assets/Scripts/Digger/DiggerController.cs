@@ -38,9 +38,10 @@ namespace Construction3D.Digger
             {
                 if (_isClicked)
                 {
+                    SwitchDirectionSetter(_mouseXPos);
                     if (_mouseXPos != 0)
                     {
-                        _mover.MoveHorizontal(_rb, _directionX);
+                        _mover.MoveHorizontal(_rb, _directionX); 
                     }
                     else
                     {
@@ -63,13 +64,13 @@ namespace Construction3D.Digger
             else if (Input.GetMouseButton(0))
             {
                 _isClicked = true;
-                SwitchAnimationEvent(_mouseXPos);
             }
             else
             {
                 _isClicked = false;
                 if (Input.GetMouseButtonUp(0) && !_isCanceled)
                 {
+                    SwitchDirectionSetter(0);
                     _isDigging = true;
                 }// Digging starter
             }
@@ -81,7 +82,7 @@ namespace Construction3D.Digger
                 _isCanceled = false;
             }
         }
-        private void SwitchAnimationEvent(float direction)
+        private void SwitchDirectionSetter(float direction)
         {
             if (direction < 0)
             {
