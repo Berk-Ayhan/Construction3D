@@ -2,8 +2,11 @@ using UnityEngine;
 
 namespace Construction3D.Digger
 {
+    public enum Direction { LEFT, RIGHT, IDLE}
     public class DiggerController : MonoBehaviour
     {
+        public event System.Action<Direction> onDiggerMove;
+
         private Rigidbody _rb;
         private Mover _mover;
         private Vector3 _directionX;
@@ -38,6 +41,7 @@ namespace Construction3D.Digger
                     if (_mouseXPos != 0)
                     {
                         _mover.MoveHorizontal(_rb, _directionX);
+                        EventAction(_mouseXPos);
                     }
                     else
                     {
@@ -75,6 +79,21 @@ namespace Construction3D.Digger
             if (_rb.position.y >= 4)
             {
                 _isCanceled = false;
+            }
+        }
+        private void EventAction(float direction)
+        {
+            if (direction < 0)
+            {
+                onDiggerMove?.Invoke(Direction.LEFT);
+            }
+            else if(direction > 0)
+            {
+                onDiggerMove?.Invoke(Direction.RIGHT);
+            }
+            else
+            {
+                onDiggerMove?.Invoke(Direction.IDLE);
             }
         }
     }
