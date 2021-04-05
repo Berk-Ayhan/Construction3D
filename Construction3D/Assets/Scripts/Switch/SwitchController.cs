@@ -16,19 +16,19 @@ namespace Construction3D.Switch
         {
             diggerController.onDiggerMove += HandleOnDiggerMove;
         }
-        private void HandleOnDiggerMove(Direction direction)
+        private void HandleOnDiggerMove(SwitchDirection direction)
         {
             switch (direction)
             {
-                case Direction.LEFT:
+                case SwitchDirection.LEFT:
                     animator.SetBool("isMoving", true);
                     animator.SetBool("isLeft", true);
                     break;
-                case Direction.RIGHT:
+                case SwitchDirection.RIGHT:
                     animator.SetBool("isMoving", true);
                     animator.SetBool("isLeft", false);
                     break;
-                case Direction.IDLE:
+                case SwitchDirection.IDLE:
                     animator.SetBool("isMoving", false);
                     break;
             }

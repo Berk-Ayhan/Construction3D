@@ -1,11 +1,11 @@
 using UnityEngine;
+using Construction3D.Switch;
 
 namespace Construction3D.Digger
 {
-    public enum Direction { LEFT, RIGHT, IDLE}
     public class DiggerController : MonoBehaviour
     {
-        public event System.Action<Direction> onDiggerMove;
+        public event System.Action<SwitchDirection> onDiggerMove;
 
         private Rigidbody _rb;
         private Mover _mover;
@@ -41,7 +41,6 @@ namespace Construction3D.Digger
                     if (_mouseXPos != 0)
                     {
                         _mover.MoveHorizontal(_rb, _directionX);
-                        EventAction(_mouseXPos);
                     }
                     else
                     {
@@ -64,6 +63,7 @@ namespace Construction3D.Digger
             else if (Input.GetMouseButton(0))
             {
                 _isClicked = true;
+                SwitchAnimationEvent(_mouseXPos);
             }
             else
             {
@@ -81,19 +81,19 @@ namespace Construction3D.Digger
                 _isCanceled = false;
             }
         }
-        private void EventAction(float direction)
+        private void SwitchAnimationEvent(float direction)
         {
             if (direction < 0)
             {
-                onDiggerMove?.Invoke(Direction.LEFT);
+                onDiggerMove?.Invoke(SwitchDirection.LEFT);
             }
             else if(direction > 0)
             {
-                onDiggerMove?.Invoke(Direction.RIGHT);
+                onDiggerMove?.Invoke(SwitchDirection.RIGHT);
             }
             else
             {
-                onDiggerMove?.Invoke(Direction.IDLE);
+                onDiggerMove?.Invoke(SwitchDirection.IDLE);
             }
         }
     }
