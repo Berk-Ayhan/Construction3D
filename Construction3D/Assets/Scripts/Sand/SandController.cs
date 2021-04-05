@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Construction3D.Sand
@@ -11,7 +9,7 @@ namespace Construction3D.Sand
         {
             if (other.gameObject.CompareTag("Digger"))
             {
-                gameObject.SetActive(false);
+                Destroy(gameObject);
             }
         }
         private void OnTriggerStay(Collider other)
@@ -21,7 +19,7 @@ namespace Construction3D.Sand
                 allowDecreaseCounter = true;
             }
         }
-        private void OnDisable()
+        private void OnDestroy()
         {
             if (allowDecreaseCounter)
             {
