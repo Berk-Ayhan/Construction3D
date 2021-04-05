@@ -2,13 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SandController : MonoBehaviour
+namespace Construction3D.Sand
 {
-    private void OnTriggerEnter(Collider other)
+    public class SandController : MonoBehaviour
     {
-        if (other.gameObject.CompareTag("Digger"))
+        private bool allowDecreaseCounter;
+        private void OnTriggerEnter(Collider other)
         {
-            gameObject.SetActive(false);
+            if (other.gameObject.CompareTag("Digger"))
+            {
+                gameObject.SetActive(false);
+            }
+        }
+        private void OnTriggerStay(Collider other)
+        {
+            if (other.gameObject.CompareTag("Area"))
+            {
+                allowDecreaseCounter = true;
+            }
+        }
+        private void OnDisable()
+        {
+            if (allowDecreaseCounter)
+            {
+                AreaController.sandCounter--;
+            }
         }
     }
 }
+

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5031722603068433425}
   - component: {fileID: 5031722603068433424}
   - component: {fileID: 5031722603068433427}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DiggerBase
   m_TagString: Digger
   m_Icon: {fileID: 0}

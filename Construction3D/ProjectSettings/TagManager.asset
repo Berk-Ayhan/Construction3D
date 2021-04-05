@@ -6,14 +6,15 @@ TagManager:
   tags:
   - Sand
   - Digger
+  - Area
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Area
   - Water
   - UI
-  - 
+  - Digger
   - 
   - 
   - 
