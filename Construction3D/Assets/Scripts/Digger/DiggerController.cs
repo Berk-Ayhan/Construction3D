@@ -84,11 +84,11 @@ namespace Construction3D.Digger
         }
         private void SwitchDirectionSetter(float direction)
         {
-            if (direction < 0)
+            if (direction < -0.08f)
             {
                 onDiggerMove?.Invoke(SwitchDirection.LEFT);
             }
-            else if(direction > 0)
+            else if(direction > 0.08f)
             {
                 onDiggerMove?.Invoke(SwitchDirection.RIGHT);
             }
