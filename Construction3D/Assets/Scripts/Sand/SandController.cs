@@ -1,3 +1,4 @@
+using Construction3D.Area;
 using UnityEngine;
 
 namespace Construction3D.Sand
@@ -22,7 +23,6 @@ namespace Construction3D.Sand
             if (allowDecreaseCounter)
             {
                 AreaController.sandCounter--;
-                print(AreaController.sandCounter);
             }
         }
     }

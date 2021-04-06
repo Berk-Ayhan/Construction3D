@@ -1,25 +1,34 @@
 using UnityEngine;
-
-public class AreaController : MonoBehaviour
+using TMPro;
+namespace Construction3D.Area
 {
-    public static int sandCounter = 0;
-    private bool isAreaClear
+    public class AreaController : MonoBehaviour
     {
-        get { return sandCounter == 0; }
-    }
-    private void Update()
-    {
-        if (isAreaClear)
+        public static int sandCounter = 0;
+        [SerializeField] private TextMeshProUGUI text;
+        private void Awake()
         {
-            print("Baþarýlý");
+            text = FindObjectOfType<TextMeshProUGUI>().GetComponent<TextMeshProUGUI>();
         }
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Sand"))
+        private bool isAreaClear
         {
-            sandCounter++;
-            print(sandCounter);
+            get { return sandCounter == 0; }
+        }
+        private void Update()
+        {
+            if (isAreaClear)
+            {
+                text.text = "Level Completed";
+                Destroy(gameObject);
+            }
+        }
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("Sand"))
+            {
+                sandCounter++;
+            }
         }
     }
 }
+
