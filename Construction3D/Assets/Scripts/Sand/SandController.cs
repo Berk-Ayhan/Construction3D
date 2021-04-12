@@ -10,15 +10,18 @@ namespace Construction3D.Sand
         {
             if (other.gameObject.CompareTag("Digger"))
             {
-                DecreaseCounter();
-                Destroy(gameObject);
+                DecreaseSandCounter();
+                gameObject.SetActive(false);
+                transform.position = new Vector3(transform.position.x, transform.position.y + 7, transform.position.z);
+                gameObject.SetActive(true);
+                //Destroy(gameObject);
             }
             if (other.gameObject.CompareTag("Area"))
             {
                 allowDecreaseCounter = true;
             }
         }
-        private void DecreaseCounter()
+        private void DecreaseSandCounter()
         {
             if (allowDecreaseCounter)
             {
